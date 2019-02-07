@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>Index</title>
+    <link rel="stylesheet" type="text/css" href="template.css">
+	<link rel="stylesheet" type="text/css" href="profileStyle.css">
+	<link rel="icon" type="image/png" href="Pictures/icon4.png"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<!----------------------------------------------------------------------------------------------------------------------------->
+<body> <!--The Body Starts here -->
+<header>
+	<div id="headerbox"><img src="Pictures/logo1.png" alt="student exchange logo" height="100" >
+	Deals for students
+	</div>
+	<nav class="topNav">
+		<ul>
+			<li><a href="homepage.html"> HOME</a></li>
+			<li><a href="browse.html"> BROWSE CATALOGE</a></li>
+			<li><a href="profile.html"> VIEW PROFILE</a></li>
+			<li><a href="contact.html"> CONTACT US</a></li>
+			<li><a href="additem.html"> ADD NEW ITEM</a></li>			
+			<li><a href="signup.html"> SIGN UP</a></li>
+			<li><a href="login.html"> LOGIN </a></li>
+			<li><a href="category.html"> CATEGORY </a></li>
+			
+		</ul>
+	</nav>
+</header>
+<div id="profileContent">
+        <!-- Your code goes here for page content -->
+<!------------------------------------------------------------------------------------------------------------------------------>
+    <?php
+        $db = mysqli_connect("localhost"[,"group4","studentexchange","group4"]);//connect to sql database
+        // Test to see if connection was successful
+        if(!$db){
+            echo '<script>alert("Error - Unable to connect to MySQL.")</script>';
+            exit;
+        }
+
+        $query ="SELECT * FROM LISTING WHERE sellerID=1";//query
+        $result =mysqli_query($db,$query);
+        if(mysqli_num_rows($result)>0)
+        {
+            while ($row=mysqli_fetch_array($result))
+            {
+
+        ?>
+            <div class="gallery">
+            <a target="_blank" href="Pictures/profileImages/pencil.jpg">
+                <img src="Pictures/<?php echo $row["photo"]; ?>" alt="image.png">
+            </a>
+            <div class="desc"> <!--This is the descripion of the item-->
+                <h4 class = "text-info"><?php echo $row["itemName"]; ?></h4>
+                <h4 class = "text-info"><?php echo $row["itemDescription"]; ?></h4>
+                <h4 class = "text-info"><?php echo $row["price"]; ?></h4>            
+            </div>
+        </div>
+            }
+        }
+
+    ?>
+    <!--------------INSERT CARD HERE LAATER------------------------>
+         <h1>Current Listings</h1>
+        
+
+        
+        <button class=addbtn>Add</button>
+        <button class=addbtn>Remove</button>
+
+</div> <!-- /#pageContent -->
+
+
+<!------Footer------>
+<div class="footer-main-div">
+
+<div class="footer-social-icons">
+    <ul>
+        <li><a href="#" target="blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#" target="blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#" target="blank"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#" target="blank"><i class="fa fa-youtube"></i></a></li>
+    </ul>
+    
+</div>
+<div class="footer-menu-one">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="contact.html">About Us</a></li>
+        <li><a href="contact.html">Services</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+</div> 
+   
+    <div class="footer-menu-two">
+    <ul>
+        <li><a href="contact.html">Blog</a></li>
+        <li><a href="contact.html">News</a></li>
+        <li><a href="browse.html">Gallery</a></li>
+        <li><a href="contact.html">Media</a></li>
+    
+    </ul>
+</div>           
+    
+</div>	
+
+<div class="footer-bottom">
+    <p>Designed by:<a href="#">The Student Exchange Dev Team</a></p>
+</div>	
+    
+</body>
+</html>
+
+
+      
